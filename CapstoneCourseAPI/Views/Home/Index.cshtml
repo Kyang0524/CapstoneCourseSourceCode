@@ -1,0 +1,56 @@
+﻿@{
+    List<Users> user = ViewBag.Users;
+}
+<h3>Data Table</h3>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Student Id</th>
+        <th>Email</th>
+        <th>Department</th>
+        <th>Action</th>
+    </tr>
+
+@foreach (Users users in user)
+{
+    <tr>
+        <td>@users.Name</td>
+        <td>@users.StudentId</td>
+        <td>@users.Email</td>
+        <td>@users.Department</td>
+        <td>
+        <form method="post" asp-controller="Home" asp-action="Delete">
+            <input name="UserId" id="UserId" value="@users.UserId" hidden readonly />
+            <button type="submit">Delete</button>
+            </form>
+            </td>
+    </tr>
+}
+</table>
+<hr />
+<h3>Add Student</h3>
+<form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Store">
+    <table>
+        <tr>
+            <td>Name: </td>
+            <td><input type="text" id="Name" name="Name" autocomplete="off" required /></td>
+        </tr>
+        <tr>
+            <td>Student Id: </td>
+            <td><input type="text" id="StudentId" name="StudentId" autocomplete="off" required/></td>
+        </tr>
+        <tr>
+            <td>Email: </td>
+            <td><input type="email" id="Email" name="Email" autocomplete="off" required /></td>
+        </tr>
+        <tr>
+            <td>Department: </td>
+            <td><input type="text" id="Department" name="Department" autocomplete="off" required /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Add" /></td>
+        </tr>
+    </table>
+</form>
+
